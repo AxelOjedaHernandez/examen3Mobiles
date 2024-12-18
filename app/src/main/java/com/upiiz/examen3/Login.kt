@@ -75,9 +75,8 @@ class Login : AppCompatActivity() {
                     if (contraseñaGuardada == contraseñaIngresada) {
                         Toast.makeText(this@Login, "Login exitoso", Toast.LENGTH_SHORT).show()
 
-                        // Crear el Intent y agregar el usuario como extra
+                        // Crear el Intent
                         val intent = Intent(this@Login, Chats::class.java)
-                        intent.putExtra("currentUser", usuarioId) // Pasar el ID del usuario
                         startActivity(intent)
                         finish()
                     } else {

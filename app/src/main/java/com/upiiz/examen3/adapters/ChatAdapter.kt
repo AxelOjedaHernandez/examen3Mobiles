@@ -10,6 +10,7 @@ import com.upiiz.examen3.models.Chat
 
 class ChatAdapter(
     private val chatList: List<Chat>,
+    private val userId: String,
     private val onItemClick: (Chat) -> Unit
 ) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
@@ -19,10 +20,15 @@ class ChatAdapter(
         private val textViewHora: TextView = itemView.findViewById(R.id.textViewHora)
 
         fun bind(chat: Chat) {
-            textViewNombre.text = chat.nombre
-            textViewUltimoMensaje.text = chat.ultimoMensaje
-            textViewHora.text = chat.hora
+            // Determinar el nombre del otro usuario
+            val nombre = if (chat.user1 == userId) chat.user2 else chat.user1
+            textViewNombre.text = nombre // Mostrar el nombre del otro usuario
 
+            // Mostrar último mensaje y hora
+            textViewUltimoMensaje.text = chat.ultimoMensaje.ifEmpty { "Sin mensajes aún" }
+            textViewHora.text = chat.horaUltimoMensaje.ifEmpty { "" }
+
+            // Configurar evento de clic
             itemView.setOnClickListener { onItemClick(chat) }
         }
     }
@@ -38,5 +44,6 @@ class ChatAdapter(
 
     override fun getItemCount() = chatList.size
 }
+
 
 

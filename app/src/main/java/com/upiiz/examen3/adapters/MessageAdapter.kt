@@ -10,11 +10,12 @@ import com.upiiz.examen3.models.Message
 
 class MessageAdapter(
     private val messageList: List<Message>,
-    private val userId: String // El ID del usuario actual para diferenciar mensajes
+    private val currentUserId: String // ID del usuario actual para diferenciar mensajes
 ) : RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val layout = if (viewType == VIEW_TYPE_SENT) R.layout.item_message_sent else R.layout.item_message_received
+        val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
         return MessageViewHolder(view)
     }
 
@@ -25,11 +26,8 @@ class MessageAdapter(
 
     override fun getItemViewType(position: Int): Int {
         val message = messageList[position]
-        return if (message.userId == userId) {
-            R.layout.item_message_sent // Layout para mensajes enviados
-        } else {
-            R.layout.item_message_received // Layout para mensajes recibidos
-        }
+        // Determina si el mensaje es enviado o recibido
+        return if (message.emisorId == currentUserId) VIEW_TYPE_SENT else VIEW_TYPE_RECEIVED
     }
 
     override fun getItemCount(): Int = messageList.size
@@ -42,6 +40,11 @@ class MessageAdapter(
             messageText.text = message.texto
             timeText.text = android.text.format.DateFormat.format("hh:mm a", message.timestamp)
         }
+    }
+
+    companion object {
+        private const val VIEW_TYPE_SENT = 1
+        private const val VIEW_TYPE_RECEIVED = 2
     }
 }
 

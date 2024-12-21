@@ -1,10 +1,12 @@
 package com.upiiz.examen3.models
 
 data class Message(
-    val texto: String = "",
-    val userId: String = "",
-    val timestamp: Long = 0
+    var texto: String = "",
+    var emisorId: String = "",
+    var timestamp: Long = 0
 )
+
+
 
 
 

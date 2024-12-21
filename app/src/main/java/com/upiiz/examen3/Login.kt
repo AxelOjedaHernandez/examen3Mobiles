@@ -73,10 +73,13 @@ class Login : AppCompatActivity() {
 
                     // Verificar si la contraseña coincide
                     if (contraseñaGuardada == contraseñaIngresada) {
-                        Toast.makeText(this@Login, "Login exitoso", Toast.LENGTH_SHORT).show()
+                        if (usuarioId.isEmpty()) {
+                            Toast.makeText(this@Login, "Usuario no válido", Toast.LENGTH_SHORT).show()
+                            return
+                        }
 
-                        // Crear el Intent
                         val intent = Intent(this@Login, Chats::class.java)
+                        intent.putExtra("userId", usuarioId)
                         startActivity(intent)
                         finish()
                     } else {
@@ -93,3 +96,4 @@ class Login : AppCompatActivity() {
         })
     }
 }
+

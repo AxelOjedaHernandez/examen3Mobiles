@@ -1,38 +1,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_person"
-        android:layout_marginEnd="8dp" />
-
-    <LinearLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:text="Nombre"
+        android:textStyle="bold"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/textViewNombre"
-            android:text="Nombre del Chat"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/textViewUltimoMensaje"
-            android:text="Último mensaje"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textViewUltimoMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Último mensaje"
+        android:textSize="14sp"
+        android:textColor="#888888" />
 
     <TextView
         android:id="@+id/textViewHora"
-        android:text="12:00"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hora"
+        android:textSize="12sp"
+        android:textColor="#888888" />
+
 </LinearLayout>
+
